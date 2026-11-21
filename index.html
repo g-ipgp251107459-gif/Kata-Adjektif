@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekspedisi Adjektif Tahun 4</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:18px;font-family:Arial,sans-serif;color:#202b55;background:linear-gradient(135deg,#22245e,#8152a7);min-height:100vh}.wrap{max-width:1050px;margin:auto}header{text-align:center;color:white;padding:15px}h1{font-size:clamp(30px,6vw,54px);margin:8px}header p{margin:5px}.panel{background:#f8f7ff;border-radius:24px;padding:18px;box-shadow:0 15px 40px #10133b66}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{background:white;border-radius:14px;padding:12px;text-align:center;font-weight:bold}.stat small{display:block;color:#777}.bar{height:12px;background:#e5e1f5;border-radius:20px;margin:14px 0;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#55d7dc,#54d6a4,#ffd45e)}.types{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.type{text-align:center;padding:11px 5px;border-radius:12px;font-size:12px;font-weight:bold}.a{background:#ffe8f1;color:#a63869}.b{background:#e7f1ff;color:#2864a7}.c{background:#e4fff2;color:#177c58}.d{background:#fff3d5;color:#986400}.intro{background:#eceaff;padding:13px;border-radius:14px;margin:12px 0;text-align:center}.game{display:grid;grid-template-columns:1fr 1fr;gap:14px}.zone{background:white;border:2px solid #e8e4f7;border-radius:18px;padding:12px}.zone h2{text-align:center;color:#55439b;font-size:18px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tile{min-height:105px;background:#fff;border:2px solid #e9e6f3;border-radius:14px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;color:#202b55}.tile:hover{border-color:#8d75ef;transform:translateY(-2px)}.art{font-size:34px}.name{font-size:13px;font-weight:bold;text-align:center}.mini{font-size:9px;color:#85859b;font-weight:bold}.chosen{background:#f0edff;border-color:#8067ed}.correct{background:#e7fff3;border-color:#42c995}.correct:after{content:"✓";color:#16976a;font-weight:bold}.nope{background:#fff0f3;border-color:#e85d7b}.feedback{text-align:center;font-weight:bold;min-height:28px;margin:13px}.good{color:#14875f}.bad{color:#d34865}.actions{text-align:center;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}button.action{border:0;border-radius:12px;padding:11px 16px;font-weight:bold;background:#7257e7;color:white;cursor:pointer}button.secondary{background:white;color:#57459d;border:2px solid #ddd5fa}.finish{display:none;text-align:center;padding:15px}.finish h2{color:#5946b3}@media(max-width:650px){.game{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.types{grid-template-columns:repeat(2,1fr)}.tile{min-height:95px}.art{font-size:29px}}
+</style></head><body><main class="wrap">
+<header><div>🚀 BAHASA MELAYU • TAHUN 4</div><h1>EKSPEDISI ADJEKTIF!</h1><p>Empat kategori kata adjektif • 12 misi padanan visual</p></header>
+<section class="panel">
+<div class="stats"><div class="stat">⭐ <small>Mata</small><span id="score">0</span></div><div class="stat">🧩 <small>Padanan</small><span id="done">0/12</span></div><div class="stat">🎯 <small>Percubaan</small><span id="tries">0</span></div><div class="stat">🏅 <small>Ganjaran</small><span id="rank">—</span></div></div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div class="intro"><b>🗺️ Misi Empat Dunia Adjektif</b><br>Pilih satu gambar, kemudian pilih kata adjektif yang sepadan.</div>
+<div class="types"><div class="type a">💗 KATA ADJEKTIF PERASAAN</div><div class="type b">⏰ KATA ADJEKTIF WAKTU</div><div class="type c">🏃 KATA ADJEKTIF CARA</div><div class="type d">👁️ KATA ADJEKTIF PANCAINDERA</div></div>
+<div class="game"><section class="zone"><h2>🖼️ PILIH GAMBAR</h2><div class="cards" id="pics"></div></section><section class="zone"><h2>🔤 PILIH PERKATAAN</h2><div class="cards" id="words"></div></section></div>
+<div id="feedback" class="feedback">✨ Pilih satu gambar untuk bermula!</div>
+<div class="actions"><button class="action secondary" onclick="hint()">💡 Petunjuk</button><button class="action secondary" id="sound" onclick="toggleSound()">🔊 Bunyi: ON</button><button class="action" onclick="restart()">↻ Main semula</button></div>
+<div class="finish" id="finish"><div style="font-size:58px">🏆</div><h2>SEMUA MISI SELESAI!</h2><p id="final"></p><button class="action" onclick="restart()">Main lagi</button></div>
+</section><p style="text-align:center;color:#eee;font-size:12px">Belajar sambil bermain • Bahasa Melayu Tahun 4</p></main>
+<script>
+const data=[
+[1,"😊","Murid tersenyum","Gembira","Perasaan","Perasaan apabila menerima hadiah."],
+[2,"😢","Murid menangis","Sedih","Perasaan","Perasaan apabila kehilangan barang kesayangan."],
+[3,"😨","Murid terkejut","Takut","Perasaan","Perasaan apabila terdengar guruh yang kuat."],
+[4,"🌅","Matahari terbit","Awal","Waktu","Datang sebelum waktu yang biasa."],
+[5,"🌙","Suasana malam","Lewat","Waktu","Melepasi waktu yang sepatutnya."],
+[6,"⚡","Bertindak segera","Segera","Waktu","Dilakukan tanpa berlengah-lengah."],
+[7,"🐢","Kura-kura bergerak","Perlahan","Cara","Bergerak tidak laju."],
+[8,"🏃","Pelari berlari","Pantas","Cara","Bergerak dengan cepat."],
+[9,"🤫","Murid berbisik","Perlahan-lahan","Cara","Bercakap dengan suara lembut dan tidak kuat."],
+[10,"🍯","Madu","Manis","Pancaindera","Rasa seperti gula atau madu."],
+[11,"🌹","Bunga mawar","Harum","Pancaindera","Bau bunga yang menyenangkan."],
+[12,"🔔","Loceng berbunyi","Nyaring","Pancaindera","Bunyi yang kuat dan jelas didengar."]
+];
+let selected=null,score=0,tries=0,done=0,matched=new Set(),soundOn=true,ctx=null;
+const el=id=>document.getElementById(id);
+const shuffle=a=>[...a].sort(()=>Math.random()-.5);
+function render(){
+el('pics').innerHTML=shuffle(data).map(x=>`<button class="tile" id="p${x[0]}" onclick="pickPic(${x[0]})"><span class="art">${x[1]}</span><span class="name">${x[2]}</span><span class="mini">${x[4].toUpperCase()}</span></button>`).join('');
+el('words').innerHTML=shuffle(data).map(x=>`<button class="tile" id="w${x[0]}" onclick="pickWord(${x[0]})"><span class="art">💬</span><span class="name">${x[3]}</span><span class="mini">${x[4].toUpperCase()}</span></button>`).join('');
+}
+function say(t,c=''){el('feedback').textContent=t;el('feedback').className='feedback '+c}
+function tone(f,d,type='sine',delay=0){if(!soundOn)return;try{let AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;ctx=ctx||new AC();if(ctx.state==='suspended')ctx.resume();let o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.001,ctx.currentTime+delay);g.gain.exponentialRampToValueAtTime(.12,ctx.currentTime+delay+.02);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+delay+d);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime+delay);o.stop(ctx.currentTime+delay+d+.03)}catch(e){}}
+function goodSound(){tone(660,.13,'sine',0);tone(880,.16,'sine',.14);tone(1100,.2,'sine',.3)}
+function badSound(){tone(230,.18,'triangle',0);tone(175,.2,'triangle',.16)}
+function toggleSound(){soundOn=!soundOn;el('sound').textContent=soundOn?'🔊 Bunyi: ON':'🔇 Bunyi: OFF';if(soundOn)tone(700,.12)}
+function pickPic(id){if(matched.has(id))return;selected=id;document.querySelectorAll('#pics .tile').forEach(x=>x.classList.remove('chosen'));el('p'+id).classList.add('chosen');say('Bagus! Cari perkataan yang sepadan dengan gambar ini.')}
+function pickWord(id){if(matched.has(id))return;if(selected===null){say('Pilih gambar dahulu.','bad');return}tries++;el('tries').textContent=tries;if(id===selected){let x=data.find(a=>a[0]===id);matched.add(id);done++;score+=10;['p','w'].forEach(k=>el(k+id).classList.add('correct'));el('p'+id).classList.remove('chosen');el('score').textContent=score;el('done').textContent=done+'/12';el('fill').style.width=(done/12*100)+'%';el('rank').textContent=done===12?'🥇 Emas':done>=8?'🥈 Perak':done>=4?'🥉 Gangsa':'⭐ Bintang';say('🎉 Betul! '+x[3]+' ialah kata adjektif '+x[4].toLowerCase()+'.','good');goodSound();selected=null;if(done===12){el('finish').style.display='block';el('final').textContent='Anda mendapat '+score+'/120 mata dalam '+tries+' percubaan. Syabas!'}}else{el('w'+id).classList.add('nope');say('Belum tepat! Cuba semak maksud dan kategori perkataan.','bad');badSound();setTimeout(()=>el('w'+id).classList.remove('nope'),450)}}
+function hint(){if(selected===null){say('Petunjuk: Empat kategori ialah perasaan, waktu, cara dan pancaindera. Pilih gambar dahulu.');return}say('💡 '+data.find(x=>x[0]===selected)[5])}
+function restart(){selected=null;score=tries=done=0;matched=new Set();el('score').textContent='0';el('tries').textContent='0';el('done').textContent='0/12';el('rank').textContent='—';el('fill').style.width='0';el('finish').style.display='none';say('✨ Pilih satu gambar untuk bermula!');render()}
+render();
+</script></body></html>
